@@ -226,6 +226,12 @@ add key=SHORT_ID_SID name=xvr value=29d2d3d5a398
 :anger:
 Контейнер будет использовать только локальный DNS сервер на IP адресе 172.18.20.5. Необходимо разрешить DNS запросы TCP/UDP порт 53 на данный IP в правилах RouterOS в разделе ```/ip firewall filter```
 
+Включить DNS-сервер на RouterOS:
+
+/ip dns set servers=1.1.1.1,8.8.8.8 allow-remote-requests=yes
+
+Убедиться, что firewall forward разрешает src=172.18.20.6 dst=172.18.20.5 proto=udp/tcp port=53.
+
 8) Запускаем контейнер через WinBox в разделе меню Winbox "container". В логах MikroTik вы увидите характерные сообщения о запуске контейнера. 
 
 :fire::fire::fire: Поздравляю! Настройка завершена. Можно проверить доступность IP 8.8.8.8 из списка "to_vpn" (этот адрес мы добавили ранее).
